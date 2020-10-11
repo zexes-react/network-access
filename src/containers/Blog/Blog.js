@@ -18,7 +18,7 @@ class Blog extends Component {
                 //success
                 if(response.status === 200){
                     //get only first 4 posts
-                    const posts = response.data.slice(0, 4);
+                    const posts = response.data.slice(0, 4);// axios converts json to js object here
                     const updatedPosts = posts.map(post => {
                         return {
                             ...post,
