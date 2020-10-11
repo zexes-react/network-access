@@ -14,7 +14,7 @@ class Blog extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts') // executes asynchronously
+        axios.get('/posts') // executes asynchronously
             .then(response => {
                 //success
                 if(response.status === 200){
