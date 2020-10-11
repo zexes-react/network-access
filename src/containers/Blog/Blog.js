@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+import Instance from '../../axios'; // i could hve used same name i.e axios
 
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
@@ -14,7 +15,7 @@ class Blog extends Component {
     }
 
     componentDidMount() {
-        axios.get('/posts') // executes asynchronously
+        Instance.get('/posts') // executes asynchronously
             .then(response => {
                 //success
                 if(response.status === 200){
