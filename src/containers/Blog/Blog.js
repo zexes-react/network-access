@@ -13,12 +13,12 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><Link to="/" class>Home</Link></li>
+                            <li><Link to="/">Home</Link></li>
                             <li><Link to={{
                                 pathname: '/new-post',
                                 hash: '#submit',
                                 search: '?quick-submit=true'
-                            }} class>New Post</Link></li>
+                            }}>New Post</Link></li>
                         </ul>
                     </nav>
                 </header>
@@ -34,5 +34,6 @@ class Blog extends Component {
 }
 //exact is used to tell to match that path, default true,
 //path where we intent to route to, or sub path where other endpoints can be appended
+//hash can be used to jump to any path of the page
 
 export default Blog;
