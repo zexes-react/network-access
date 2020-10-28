@@ -9,8 +9,9 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.id){
+    componentDidMount() {
+        console.log(this.props)
+        if(this.props.match.params.id){
             //if you don't do the below, u'll have an infinite loop
             //because calling setState in componentDidUpdate, updates the data, n will make componentDidUpdate to be called again and hence setState ...
             //however the below only runs if
@@ -18,7 +19,7 @@ class FullPost extends Component {
             // and the new post id is not the same as the previous post id>>>> (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
             //if no id, we set a Key
             if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)){
-                axios.get('/posts/' + this.props.id)
+                axios.get('/posts/' + this.props.match.params.id)
                     .then(response => {
                         this.setState({loadedPost: response.data})
                         console.log(response.data);
