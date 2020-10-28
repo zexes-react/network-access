@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Post from "../../../components/Post/Post";
 import axios from "../../../axios";
+import {Link} from 'react-router-dom'
 
 import classes from "./Posts.module.css";
 
 
 class Posts extends Component{
-    state ={
+    state = {
         posts: []
     }
 
@@ -15,7 +16,7 @@ class Posts extends Component{
         axios.get('/posts') // executes asynchronously
             .then(response => {
                 //success
-                if(response.status === 200){
+                if (response.status === 200) {
                     //get only first 4 posts
                     const posts = response.data.slice(0, 4);// axios converts json to js object here
                     const updatedPosts = posts.map(post => {
@@ -36,28 +37,30 @@ class Posts extends Component{
     }
 
 
-    postSelectedHandler = (id) =>{
+    postSelectedHandler = (id) => {
         this.setState({selectedPostId: id})
     }
 
     render() {
         let posts = <p style={{textAlign: 'center'}}>Something went wrong</p>
-        if(!this.state.error){
+        if (!this.state.error) {
             posts = this.state.posts.map(post => {
-                return <Post
-                    key={post.id}
-                    title={post.title}
-                    author={post.author}
-                    clicked={() => this.postSelectedHandler(post.id)}/>
+                return (
+                    <Link to={'/' + post.id} key={post.id}>
+                        <Post
+                            title={post.title}
+                            author={post.author}
+                            clicked={() => this.postSelectedHandler(post.id)}/>
+                    </Link>);
             });
-        }
 
-        return (
-            <section className={classes.Posts}>
-                {posts}
-            </section>
-        );
+            return (
+                <section className={classes.Posts}>
+                    {posts}
+                </section>
+            );
+        }
     }
 }
 
-export default Posts;
+    export default Posts;
