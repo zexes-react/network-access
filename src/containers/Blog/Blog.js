@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 import classes from './Blog.module.css';
 import Posts from "./Posts/Posts";
@@ -32,6 +32,8 @@ class Blog extends Component {
                 <Switch> {/*loads the path that matches a given set of rout*/}
                     <Route path="/new-post" component={NewPost} />
                     <Route path="/posts" component={Posts} />
+                    <Redirect from="/" to="/posts" /> {/*if used outside switch u can't use from*/}
+                    {/*<Route path="/" component={Posts} />*/}
                 </Switch>
 
             </div>
