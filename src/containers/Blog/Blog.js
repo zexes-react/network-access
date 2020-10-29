@@ -35,7 +35,8 @@ class Blog extends Component {
                 <Switch> {/*loads the path that matches a given set of rout*/}
                     {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
                     <Route path="/posts" component={Posts} />
-                    <Redirect from="/" to="/posts" /> {/*if used outside switch u can't use from*/}
+                    <Route render={() => <h1>Not Found</h1>}/> {/*we can render a JSX(another component or page) here too === this works as below too as rendering from default / to any other unknown route will be caught*/}
+                    {/*<Redirect from="/" to="/posts" /> /!*if used outside switch u can't use from*!/ */}
                     {/*<Route path="/" component={Posts} />*/}
                 </Switch>
 
@@ -46,5 +47,6 @@ class Blog extends Component {
 //exact is used to tell to match that path, default true,
 //path where we intent to route to, or sub path where other endpoints can be appended
 //hash can be used to jump to any path of the page
+/* <Redirect from="/" to="/posts" /> if used outside switch u can't use from*/
 
 export default Blog;
